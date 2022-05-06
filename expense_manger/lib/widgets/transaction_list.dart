@@ -31,46 +31,22 @@ class TransactionList extends StatelessWidget {
                 itemBuilder: (context, index) {
                   Transaction tx = transactions[index];
                   return Card(
-                    child: Row(
-                      children: <Widget>[
-                        Container(
-                          margin: const EdgeInsets.symmetric(
-                            vertical: 10,
-                            horizontal: 15,
+                    margin: EdgeInsets.symmetric(vertical: 8, horizontal: 5),
+                    child: ListTile(
+                      leading: CircleAvatar(
+                        radius: 30,
+                        child: Padding(
+                          padding: const EdgeInsets.all(6.0),
+                          child: FittedBox(
+                            child: Text('\$${tx.amount}'),
                           ),
-                          child: Text(
-                            '\$${tx.amount.toStringAsFixed(2)}',
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                              color: Colors.purple,
-                            ),
-                          ),
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Theme.of(context).primaryColor,
-                              width: 2,
-                            ),
-                          ),
-                          padding: const EdgeInsets.all(10),
                         ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              tx.title,
-                              style: Theme.of(context).textTheme.headline6,
-                            ),
-                            Text(
-                              DateFormat.yMMMd().format(tx.date),
-                              style: const TextStyle(
-                                color: Colors.grey,
-                                fontSize: 10,
-                              ),
-                            )
-                          ],
-                        )
-                      ],
+                      ),
+                      title: Text(
+                        tx.title,
+                        style: Theme.of(context).textTheme.headline6,
+                      ),
+                      subtitle: Text(DateFormat.yMMMd().format(tx.date)),
                     ),
                   );
                 },
